@@ -147,3 +147,85 @@
             </div>
             
         </div>
+        <div class="container-fluid">
+            <div class="row">
+              <div class="container-fluid">
+                <div class="row">
+                  <h1 class="text-black my-5 text-center">Liste des formations</h1>
+                  <div class="container">
+                    <div class="row justify-content-center">
+                      <div class="col-md-8">
+                        <!-- Liste des formations avec actions -->
+                        <div class="card mb-4">
+                          <div class="card-header bg-primary text-white">Liste des formations</div>
+                          <div class="card-body">
+                            <table class="table table-hover">
+                              <thead>
+                                <tr>
+                                  <th scope="col">Titre</th>
+                                  <th scope="col">Description</th>
+                                  <th scope="col">Categorie</th>
+                                  <th scope="col">Date début</th>
+                                  <th scope="col">Date Fin</th>
+                                  <th scope="col">Actions</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let training of trainings">
+                                  <td>{{ training.title }}</td>
+                                  <td>{{ training.description }}</td>
+                                  <td>{{ training.category }}</td>
+                                  <td>{{ training.date_start }}</td>
+                                  <td>{{ training.date_end }}</td>
+                                  <td>
+                                    <button class="btn btn-danger mx-2" (click)="deleteTraining(training.id)">Delete</button>
+                                    <button class="btn btn-primary" (click)="editTraining(training.id)">Edit</button>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+          
+                    <div class="row justify-content-center">
+                      <div class="col-md-8">
+                        <!-- Formulaire d'ajout ou de modification de formation -->
+                        <div class="card">
+                          <div class="card-header bg-primary text-white">Ajouter ou modifier une formation</div>
+                          <div class="card-body">
+                            <form [formGroup]="trainingForm" (ngSubmit)="onSubmit()">
+                              <input type="hidden" formControlName="id"> <!-- Champ caché pour l'ID -->
+                              <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Title" formControlName="title">
+                              </div>
+                              <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Description" formControlName="description">
+                              </div>
+                              <div class="form-group">
+                                <select class="form-control" formControlName="category">
+                                  <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+                                </select>
+                              </div>
+
+                              
+                              
+                              <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Date Start" formControlName="date_start">
+                              </div>
+                              <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Date End" formControlName="date_end">
+                              </div>
+                              <button type="submit" class="btn btn-primary">Save</button> <!-- Bouton pour sauvegarder -->
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
