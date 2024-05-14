@@ -2,14 +2,32 @@ from rest_framework import serializers
 from .models import Training, Category, Employee, Enrollment
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
-
+from .models import CustomUser
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
 from .models import CustomUser
 
 class CustomUserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+
     class Meta:
         model = CustomUser
-        fields = ['id', 'email', 'username', 'is_active', 'is_staff']
+        fields = ['id', 'email', 'username', 'password', 'is_active', 'is_staff']
+
+    def create(self, validated_data):
+        user = CustomUser.objects.create_user(
+            email=validated_data['email'],
+            username=validated_data['username'],
+            password=validated_data['password']
+        )
+        return user
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        data.update({'email': self.user.email})
+        data.update({'username': self.user.username})
+        return data
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)

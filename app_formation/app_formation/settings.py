@@ -4,6 +4,13 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+# Configuration de JWT
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -40,6 +47,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',  # Middleware pour autoriser les requêtes CORS
 ]
+AUTH_USER_MODEL = 'app_name.CustomUser'
 
 
 ROOT_URLCONF = 'app_formation.urls'
@@ -68,14 +76,15 @@ WSGI_APPLICATION = 'app_formation.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'phosphate',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'djongo',
+        'ENFORCE_SCHEMA': False,  # Optionnel, désactive la vérification du schéma
+        'NAME': 'phosphate',  # Nom de la base de données
+        'CLIENT': {
+            'host': 'mongodb+srv://hanyne:1234@phosphate.hrw5ult.mongodb.net/?authSource=admin',
+        }
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

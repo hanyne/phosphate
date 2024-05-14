@@ -1,7 +1,6 @@
+from django.conf import settings
 from django.db import models
-from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-from django.db import models
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, username, password=None):
@@ -42,11 +41,20 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Formateur(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    expertise = models.CharField(max_length=200)
+    bio = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.user.username
 
 class Training(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    formateur = models.ForeignKey(Formateur, on_delete=models.SET_NULL, null=True, blank=True)
     date_start = models.DateField()
     date_end = models.DateField()
 
@@ -54,7 +62,7 @@ class Training(models.Model):
         return self.title
 
 class Employee(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     employee_id = models.CharField(max_length=50)
     department = models.CharField(max_length=100)
     # Add other employee information fields as needed
@@ -69,4 +77,3 @@ class Enrollment(models.Model):
 
     def __str__(self):
         return f"{self.employee.user.username} - {self.training.title}"
-    
