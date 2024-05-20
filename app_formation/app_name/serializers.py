@@ -1,11 +1,12 @@
 from rest_framework import serializers
-from .models import Training, Category, Employee, Enrollment
+from .models import CustomUser, Category, Training, Employee, Enrollment, Formateur
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework import serializers
-from .models import CustomUser
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework import serializers
-from .models import CustomUser
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        # Add any custom validation logic here if needed
+        return data
 
 class CustomUserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -22,35 +23,30 @@ class CustomUserSerializer(serializers.ModelSerializer):
         )
         return user
 
-class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
-    def validate(self, attrs):
-        data = super().validate(attrs)
-        data.update({'email': self.user.email})
-        data.update({'username': self.user.username})
-        return data
-class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
-    def validate(self, attrs):
-        data = super().validate(attrs)
-        # Add any custom validation logic here if needed
-        return data
-
-
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = '__all__'
 
 class TrainingSerializer(serializers.ModelSerializer):
+    category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
+
     class Meta:
         model = Training
         fields = '__all__'
 
+
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
-        fields = ['employee_id', 'department']  
+        fields = ['id', 'employee_id', 'department']
 
 class EnrollmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Enrollment
-        fields = '__all__'  
+        fields = '__all__'
+
+class FormateurSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Formateur
+        fields = '__all__'

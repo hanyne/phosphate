@@ -1,0 +1,28 @@
+<h2>Liste des Employés</h2>
+<ul>
+  <li *ngFor="let employee of employees" (click)="selectEmployee(employee)">
+    {{ employee.name }} - {{ employee.department }}
+  </li>
+</ul>
+
+<h2>Ajouter un Employé</h2>
+<form (ngSubmit)="createEmployee()">
+  <label for="newName">Nom:</label>
+  <input type="text" id="newName" name="newName" [(ngModel)]="newEmployee.name" required>
+
+  <label for="newDepartment">Département:</label>
+  <input type="text" id="newDepartment" name="newDepartment" [(ngModel)]="newEmployee.department" required>
+
+  <button type="submit">Enregistrer</button>
+</form>
+
+<h2>Modifier un Employé</h2>
+<div *ngIf="selectedEmployee">
+  <label for="updateName">Nom:</label>
+  <input type="text" id="updateName" name="updateName" [(ngModel)]="selectedEmployee.name" required>
+
+  <label for="updateDepartment">Département:</label>
+  <input type="text" id="updateDepartment" name="updateDepartment" [(ngModel)]="selectedEmployee.department" required>
+
+  <button (click)="updateEmployee()">Enregistrer</button>
+</div>

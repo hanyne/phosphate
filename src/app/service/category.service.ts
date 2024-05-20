@@ -1,3 +1,4 @@
+// category.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -7,7 +8,7 @@ import { Category } from '../model/category';
   providedIn: 'root'
 })
 export class CategoryService {
-  private baseUrl = 'http://localhost:8000/category/';
+  private baseUrl = 'http://localhost:8000/api/category/';
 
   constructor(private http: HttpClient) { }
 

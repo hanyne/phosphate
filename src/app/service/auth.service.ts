@@ -1,22 +1,50 @@
 // auth.service.ts
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User, AuthResponse } from '../model/user';
+import { tap } from 'rxjs/operators';
+import { User } from '../model/user';
+
+// Définir une interface pour la réponse d'authentification
+interface AuthResponse {
+  token: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private apiUrl = 'http://localhost:8000/api/';
+  private authTokenKey = 'authToken'; // Clé pour le stockage du jeton d'authentification dans le LocalStorage
 
   constructor(private http: HttpClient) { }
 
-  signUp(user: User): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}signup/`, user);
+  login(credentials: { email: string, password: string }): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.apiUrl}login/`, credentials)
+      .pipe(
+        tap(response => {
+          // Stocker le jeton d'authentification dans le LocalStorage après une connexion réussie
+          localStorage.setItem(this.authTokenKey, response.token);
+        })
+      );
   }
 
-  login(credentials: { email: string, password: string }): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}login/`, credentials);
+  logout(): void {
+    // Supprimer le jeton d'authentification du LocalStorage lors de la déconnexion
+    localStorage.removeItem(this.authTokenKey);
+  }
+
+  isLoggedIn(): boolean {
+    // Vérifier si l'utilisateur est connecté en fonction de la présence du jeton d'authentification dans le LocalStorage
+    return !!localStorage.getItem(this.authTokenKey);
+  }
+
+  getAuthToken(): string | null {
+    // Récupérer le jeton d'authentification du LocalStorage
+    return localStorage.getItem(this.authTokenKey);
+  }
+  signUp(user: User): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}signup/`, user);
   }
 }

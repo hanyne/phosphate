@@ -1,3 +1,4 @@
+// category.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from '../../model/category';
@@ -8,7 +9,7 @@ import { CategoryService } from '../../service/category.service';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.css']
 })
-export class CategoryComponent {
+export class CategoryComponent implements OnInit {
   categories: Category[] = [];
   categoryForm!: FormGroup;
 

@@ -16,6 +16,12 @@ import { TrainingComponent } from './components/training/training.component';
 import { FormsModule } from '@angular/forms'; 
 import { ReactiveFormsModule } from '@angular/forms';
 import { CategoryComponent } from './components/category/category.component';
+import { FormateurComponent } from './components/formateur/formateur.component';
+import { EmployeeListComponent } from './components/employee-list/employee-list.component';
+import { HomeComponent } from './components/home/home.component';
+import { SigninComponent } from './components/signin/signin.component';
+import { AdminloginComponent } from './components/adminlogin/adminlogin.component';
+import { AboutComponent } from './components/about/about.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +35,13 @@ import { CategoryComponent } from './components/category/category.component';
     EditUtilisateurComponent,
     AddUtilisateurComponent,
     TrainingComponent,
-    CategoryComponent
+    CategoryComponent,
+    FormateurComponent,
+    EmployeeListComponent,
+    HomeComponent,
+    SigninComponent,
+    AdminloginComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

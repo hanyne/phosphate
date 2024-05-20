@@ -36,6 +36,12 @@ class CustomUser(AbstractBaseUser):
     def __str__(self):
         return self.email
 
+    def has_perm(self, perm, obj=None):
+        return True
+
+    def has_module_perms(self, app_label):
+        return self.is_staff
+
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
@@ -65,7 +71,6 @@ class Employee(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     employee_id = models.CharField(max_length=50)
     department = models.CharField(max_length=100)
-    # Add other employee information fields as needed
 
     def __str__(self):
         return self.user.username

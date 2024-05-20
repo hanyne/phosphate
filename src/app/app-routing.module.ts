@@ -10,11 +10,19 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { TrainingComponent } from './components/training/training.component';
 import { CategoryComponent } from './components/category/category.component';
+import { FormateurComponent } from './components/formateur/formateur.component';
+import { EmployeeListComponent } from './components/employee-list/employee-list.component';
+import { HomeComponent } from './components/home/home.component';
+import { SigninComponent } from './components/signin/signin.component';
+import { AdminloginComponent } from './components/adminlogin/adminlogin.component';
+import { AboutComponent } from './components/about/about.component';
+
+
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'login', component: SigninComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'edit-categorie', component: EditCategorieComponent },
@@ -24,6 +32,12 @@ const routes: Routes = [
   { path: 'add-user', component: AddUtilisateurComponent },
   { path: 'training', component: TrainingComponent },
   { path: 'category', component: CategoryComponent },
+  { path: 'formateur', component: FormateurComponent },
+  { path: 'emp', component: EmployeeListComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'admin', component: AdminloginComponent },
+  { path: 'about', component: AboutComponent },
+
 
   
 ];

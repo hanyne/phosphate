@@ -2,7 +2,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+AUTH_USER_MODEL = 'app_name.CustomUser'
 
 # Configuration de JWT
 REST_FRAMEWORK = {
@@ -47,7 +47,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',  # Middleware pour autoriser les requêtes CORS
 ]
-AUTH_USER_MODEL = 'app_name.CustomUser'
 
 
 ROOT_URLCONF = 'app_formation.urls'
@@ -76,15 +75,14 @@ WSGI_APPLICATION = 'app_formation.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'ENFORCE_SCHEMA': False,  # Optionnel, désactive la vérification du schéma
-        'NAME': 'phosphate',  # Nom de la base de données
-        'CLIENT': {
-            'host': 'mongodb+srv://hanyne:1234@phosphate.hrw5ult.mongodb.net/?authSource=admin',
-        }
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'hanine',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

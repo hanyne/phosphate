@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>ZenBlog Bootstrap Template - About</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+
+  <!-- =======================================================
+  * Template Name: ZenBlog
+  * Updated: Jan 29 2024 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/zenblog-bootstrap-blog-template/
+  * Author: BootstrapMade.com
+  * License: https:///bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/CPG_logo.svg/langfr-210px-CPG_logo.svg.png" alt="">
+        <h4>La Compagnie des phosphates de Gafsa</h4>
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+            <li><a href="/home">Accueil</a></li>
+            <li><a href="about">A propos</a></li>
+            <li *ngIf="isLoggedIn; else loginButton">
+                <a href="#" (click)="logout()">Déconnexion</a>
+            </li>
+            <ng-template #loginButton>
+                <li><a href="/login">Connexion</a></li>
+            </ng-template>
+        </ul>
+    </nav><!-- .navbar -->
+
+    
+      
+
+      <div class="position-relative">
+        <a href="#" class="mx-2"><span class="bi-facebook"></span></a>
+        <a href="#" class="mx-2"><span class="bi-twitter"></span></a>
+        <a href="#" class="mx-2"><span class="bi-instagram"></span></a>
+
+        <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+
+        <!-- ======= Search Form ======= -->
+        <div class="search-form-wrap js-search-form-wrap">
+          <form action="search-result.html" class="search-form">
+            <span class="icon bi-search"></span>
+            <input type="text" placeholder="Search" class="form-control">
+            <button class="btn js-search-close"><span class="bi-x"></span></button>
+          </form>
+        </div><!-- End Search Form -->
+
+      </div>
+
+    </div>
+
+  </header><!-- End Header -->
+
+  <main id="main">
+    <section>
+      <div class="container" data-aos="fade-up">
+        <div class="row">
+          <div class="col-lg-12 text-center mb-5">
+            <h1 class="page-title">La Compagnie des phosphates de Gafsa</h1>
+          </div>
+        </div>
+
+        <div class="row mb-5">
+
+          <div class="d-md-flex post-entry-2 half">
+            <a href="#" class="me-4 thumbnail">
+              <a href="#">
+                <img src="https://www.espacemanager.com/sites/default/files/field/image/cpg_0106.jpg" alt="" class="img-fluid" style="width: 500px; height: auto;">
+            </a>
+                        </a>
+            <div class="ps-md-5 mt-4 mt-md-0">
+              <div class="post-meta mt-4">About us</div>
+              <h2 class="mb-4 display-4">Notre Entreprise</h2>
+
+              <p>La Compagnie des phosphates de Gafsa (شركة فسفاط قفصة) ou CPG est une entreprise tunisienne d'exploitation des phosphates basée à Gafsa. La CPG figure parmi les plus importants producteurs de phosphates, occupant la cinquième place mondiale. L'activité de l'entreprise se définit en 4 grands groupes: La préparation du terrain, extraction, production et la commercialisation des phosphates.</p>
+            </div>
+          </div>
+
+          <div class="d-md-flex post-entry-2 half mt-5">
+            <a href="#" class="me-4 thumbnail order-2">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1886200.8288203792!2d6.9184737364600135!3d34.09610023387849!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12f896555003b82b%3A0x4703204b42e8f873!2sCompagnie%20des%20Phosphates%20de%20Gafsa!5e0!3m2!1sfr!2stn!4v1716239431333!5m2!1sfr!2stn" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>         </a>
+            <div class="pe-md-5 mt-4 mt-md-0">
+              <div class="post-meta mt-4">Notre &amp; Localisation</div>
+              <h2 class="mb-4 display-4">Notre Localisation</h2>
+
+              <p> Notre siège social est situé à Cité Bayech - 2100 - GAFSA - TUNISIE. Vous pouvez nous contacter par téléphone au (216) 76 226 022 ou au (216) 76 224 132, ainsi que par fax au 60 007. Pour toute question ou demande, vous pouvez également nous envoyer un e-mail à l'adresse cpg.gafsa@cpg.com.tn. </p>
+              <p> Pour toute question concernant l'approvisionnement, veuillez contacter notre Direction Centrale de l'Approvisionnement au (216) 76 241 500 ou au (216) 76 241 636, ou par e-mail à l'adresse CPG.DGAP@cpg.com.tn. Si vous avez des questions spécifiques sur l'embarquement à Sfax, vous pouvez contacter notre Direction Embarquement au (216) 74 227 516 ou au (216) 74 296 581, ou par e-mail à l'adresse CPG.DEMBS@cpg.com.tn. </p>
+              
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="mb-5 bg-light py-5">
+      <div class="container" data-aos="fade-up">
+        <div class="row justify-content-between align-items-lg-center">
+          <div class="col-lg-5 mb-4 mb-lg-0">
+            <h2 class="display-4 mb-4">Actualités Récente</h2>
+            <p>
+            </p>
+            <p>Le Phosphate Gafsa continue de jouer un rôle essentiel dans le secteur de l'industrie minière en Tunisie. Récemment, nous avons lancé de nouveaux projets visant à améliorer notre efficacité opérationnelle et notre impact environnemental. Nous avons également renforcé nos initiatives de développement durable, en mettant l'accent sur la préservation des ressources naturelles et le bien-être des communautés locales. Parallèlement, nous continuons à investir dans la recherche et l'innovation pour rester à la pointe de notre industrie et répondre aux besoins croissants du marché mondial. Restez à l'écoute pour plus de mises à jour sur nos progrès et nos initiatives à venir.
+            </p>
+            <p><a href="#" class="more">Voir plus</a></p>
+          </div>
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-6">
+                <img src="https://cdnfr.africanmanager.com/wp-content/uploads/2020/05/phosphate_production.jpg" alt="" class="img-fluid mb-4">
+              </div>
+              <div class="col-6 mt-4">
+                <img src="https://letemps.news/wp-content/uploads/2023/07/phosphate.jpg" alt="" class="img-fluid mb-4">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+        <div class="container" data-aos="fade-up">
+          <div class="row">
+            <div class="col-12 text-center mb-5">
+              <div class="row justify-content-center">
+                <div class="col-lg-8">
+                  <h2 class="display-4">Notre Formation</h2>
+                  <p>Que vous soyez un débutant cherchant à acquérir de nouvelles compétences ou un professionnel expérimenté désireux de se perfectionner dans le domaine des phosphates de Gafsa, nos formations offrent une expérience d'apprentissage enrichissante et dynamique. Elles sont conçues pour vous aider à atteindre vos objectifs professionnels et à prospérer dans ce secteur crucial de l'industrie, en vous fournissant les connaissances et les compétences nécessaires pour réussir.</p>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Utilisation de *ngIf pour afficher les formations uniquement si l'utilisateur est connecté -->
+            <ng-container *ngIf="isLoggedIn">
+              <!-- Utilisation de *ngFor pour parcourir la liste des formations -->
+              <div class="col-lg-4 text-center mb-5" *ngFor="let training of trainings">
+                <div class="card">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShLuBkolCPcWj4M-JXIsI7q88wUjVElfyt6RNY2enU4Q&s" class="card-img-top img-fluid rounded-circle w-50 mx-auto mt-4" alt="...">
+                  <div class="card-body">
+                    <h4 class="card-title">{{ training.title }}</h4>
+                    <p class="card-text">{{ training.description }}</p>
+                    <p>Date de début: {{ training.date_start }}</p>
+                    <p>Date de fin: {{ training.date_end }}</p>
+                    <div class="inscription-buttons">
+                      <button class="btn btn-primary" (click)="enroll(training.id)">S'inscrire</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+      
+            <!-- Si l'utilisateur n'est pas connecté, afficher un message -->
+            <ng-container *ngIf="!isLoggedIn">
+              <div class="col-lg-12 text-center">
+                <p>Veuillez vous connecter pour accéder aux formations.</p>
+              </div>
+            </ng-container>
+            
+          </div>
+        </div>
+      </section>
+      
+  
+
+  </main><!-- End #main -->
+ 
+  <!-- ======= Footer ======= -->
+  <div class="footer-basic">
+    <footer>
+        <div class="social text-center">
+            <a href="#"><i class="icon ion-social-instagram"></i></a>
+            <a href="#"><i class="icon ion-social-snapchat"></i></a>
+            <a href="#"><i class="icon ion-social-twitter"></i></a>
+            <a href="https://www.facebook.com/CNITUNISI/"><i class="icon ion-social-facebook"></i></a>
+        </div>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Accueil</a></li>
+            <li class="list-inline-item"><a href="#">A propos</a></li>
+            <li class="list-inline-item"><a href="#">Contact</a></li>
+            <li class="list-inline-item"><a href="#">Login</a></li>
+            <li class="list-inline-item"><a href="#">logout</a></li>
+        </ul>
+        <p class="copyright text-center">La Compagnie des phosphates de Gafsa © 2024</p>
+    </footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>

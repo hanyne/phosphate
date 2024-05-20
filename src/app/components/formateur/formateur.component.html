@@ -1,0 +1,74 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="container-fluid">
+        <div class="row">
+          <h1 class="text-black my-5 text-center">Liste des Formateurs</h1>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-md-8">
+                <!-- Liste des formateurs avec actions -->
+                <div class="card mb-4">
+                  <div class="card-header bg-primary text-white">Liste des Formateurs</div>
+                  <div class="card-body">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col">Email</th>
+                          <th scope="col">Username</th>
+                          <th scope="col">Expertise</th>
+                          <th scope="col">Bio</th>
+                          <th scope="col">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let formateur of formateurs">
+                          <td>{{ formateur.user.email }}</td>
+                          <td>{{ formateur.user.username }}</td>
+                          <td>{{ formateur.expertise }}</td>
+                          <td>{{ formateur.bio }}</td>
+                         
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="row justify-content-center">
+              <div class="col-md-8">
+                <!-- Formulaire d'ajout ou de modification de formateur -->
+                <div class="card">
+                  <div class="card-header bg-primary text-white">Ajouter ou Modifier un Formateur</div>
+                  <div class="card-body">
+                    <form [formGroup]="formateurForm" (ngSubmit)="onSubmit()">
+                      <input type="hidden" formControlName="id"> <!-- Champ caché pour l'ID -->
+  
+                      <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email" formControlName="user.email">
+                      </div>
+  
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Username" formControlName="user.username">
+                      </div>
+  
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Expertise" formControlName="expertise">
+                      </div>
+  
+                      <div class="form-group">
+                        <textarea class="form-control" placeholder="Bio" formControlName="bio"></textarea>
+                      </div>
+  
+                      <button type="submit" class="btn btn-primary">Save</button> <!-- Bouton pour sauvegarder -->
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
