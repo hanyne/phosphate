@@ -44,7 +44,7 @@ export class AuthService {
     // Récupérer le jeton d'authentification du LocalStorage
     return localStorage.getItem(this.authTokenKey);
   }
-  signUp(user: User): Observable<any> {
+  signUp(user: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}signup/`, user);
   }
 }

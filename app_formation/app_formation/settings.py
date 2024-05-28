@@ -23,7 +23,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']  # Ajoutez ici les hôtes autorisés en production
 
 
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,15 +36,16 @@ INSTALLED_APPS = [
     'app_name',  # Remplacez 'app_name' par le nom de votre application Django
 ]
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',  # Middleware pour autoriser les requêtes CORS
 ]
 
 

@@ -7,7 +7,7 @@ import { Training } from '../model/training';
   providedIn: 'root'
 })
 export class TrainingService {
-  private baseUrl = 'http://localhost:8000/api/training/'; // Assurez-vous que l'URL de base correspond à votre backend Django
+  private baseUrl = 'http://localhost:8000/api/training/';
 
   constructor(private http: HttpClient) { }
 
@@ -31,4 +31,6 @@ export class TrainingService {
     const url = `${this.baseUrl}${trainingData.id}/`;
     return this.http.put<Training>(url, trainingData);
   }
+  
+  
 }

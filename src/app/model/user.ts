@@ -4,8 +4,5 @@ export interface User {
     password: string;
   }
   
-  export interface AuthResponse {
-    access: string;
-    refresh: string;
-  }
+ 
   

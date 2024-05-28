@@ -44,7 +44,15 @@ class EmployeeSerializer(serializers.ModelSerializer):
 class EnrollmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Enrollment
-        fields = '__all__'
+        fields = ['id', 'user', 'training', 'is_accepted']
+        
+    def validate(self, data):
+        user = self.context['request'].user
+        existing_enrollment = Enrollment.objects.filter(employee__user=user).exists()
+        if existing_enrollment:
+            raise serializers.ValidationError("Vous êtes déjà inscrit à une formation.")
+        return data
+
 
 class FormateurSerializer(serializers.ModelSerializer):
     class Meta:

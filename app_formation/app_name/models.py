@@ -75,10 +75,14 @@ class Employee(models.Model):
     def __str__(self):
         return self.user.username
 
+from django.db import models
+from django.contrib.auth import get_user_model
+from .models import Training
+
 class Enrollment(models.Model):
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     training = models.ForeignKey(Training, on_delete=models.CASCADE)
     is_accepted = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.employee.user.username} - {self.training.title}"
+        return f"{self.user.username} - {self.training.title}"

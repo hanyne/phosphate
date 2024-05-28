@@ -1,5 +1,3 @@
-// home.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Training } from '../../model/training';
@@ -8,6 +6,7 @@ import { TrainingService } from '../../service/training.service';
 import { CategoryService } from 'src/app/service/category.service';
 import { EnrollmentService } from '../../service/enrollment.service';
 import { AuthService } from 'src/app/service/auth.service';
+import { HttpErrorResponse } from '@angular/common/http'; // Ajout de HttpErrorResponse pour gérer les erreurs HTTP
 
 @Component({
   selector: 'app-home',
@@ -29,14 +28,14 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.checkLoginStatus(); // Appel de la méthode pour vérifier l'état de connexion
+    this.checkLoginStatus();
     this.initForm();
     this.getTrainings();
     this.getCategories();
   }
 
   checkLoginStatus(): void {
-    this.isLoggedIn = this.authService.isLoggedIn(); // Vérifier l'état de connexion
+    this.isLoggedIn = this.authService.isLoggedIn();
   }
 
   initForm(): void {
@@ -80,7 +79,14 @@ export class HomeComponent implements OnInit {
   }
 
   getTrainings(): void {
-    this.trainingService.getAllTrainings().subscribe(trainings => this.trainings = trainings);
+    this.trainingService.getAllTrainings().subscribe(
+      trainings => this.trainings = trainings,
+      (error: HttpErrorResponse) => {
+        console.error("Erreur lors de la récupération des formations:", error.statusText);
+        // Gérer l'erreur HTTP de manière appropriée
+        // Par exemple, afficher un message d'erreur à l'utilisateur
+      }
+    );
   }
 
   deleteTraining(id: number): void {
@@ -98,25 +104,34 @@ export class HomeComponent implements OnInit {
   getCategories(): void {
     this.categoryService.getAllCategories().subscribe(categories => this.categories = categories);
   }
-
+  
   enroll(trainingId: number): void {
     if (!this.authService.isLoggedIn()) {
       console.error("L'utilisateur n'est pas connecté.");
       // Gérer l'erreur ou rediriger vers la page de connexion
       return;
     }
-  
+
     this.enrollmentService.enroll(trainingId).subscribe(
       () => {
         console.log("Inscription réussie à la formation avec l'ID:", trainingId);
+        this.getTrainings();
       },
-      (error) => {
-        console.error("Erreur lors de l'inscription à la formation avec l'ID:", trainingId, error);
+      (error: HttpErrorResponse) => {
+        console.error("Erreur lors de l'inscription à la formation avec l'ID:", trainingId, error.statusText);
+        // Gérer l'erreur HTTP de manière appropriée
+        if (error.status === 404) {
+          alert("La formation que vous essayez de rejoindre n'existe pas.");
+        } else if (error.status === 400) {
+          alert("Vous êtes déjà inscrit à cette formation.");
+        } else {
+          alert("Une erreur s'est produite lors de l'inscription à la formation.");
+        }
       }
     );
   }
 
   logout(): void {
-    this.authService.logout(); // Appeler la méthode de déconnexion du service AuthService
+    this.authService.logout();
   }
 }

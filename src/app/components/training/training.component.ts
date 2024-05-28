@@ -43,31 +43,40 @@ export class TrainingComponent implements OnInit {
   onSubmit(event: Event): void {
     event.preventDefault();
     const formData = this.trainingForm.value;
-    if (formData.category && formData.category.id) {
-      if (formData.id) {
-        this.updateTraining(formData);
-      } else {
-        formData.category = formData.category.id;
-        this.createTraining(formData);
-      }
+    if (formData.id) {
+      this.updateTraining(formData);
     } else {
-      console.error('Category not found');
+      this.createTraining(formData);
     }
   }
-  
+
   createTraining(formData: Training): void {
     this.trainingService.createTraining(formData).subscribe(() => {
       this.getTrainings();
       this.trainingForm.reset();
     });
   }
-  
+
   updateTraining(formData: Training): void {
-    this.trainingService.updateTraining(formData).subscribe(() => {
-      this.getTrainings();
-      this.trainingForm.reset();
-    });
+    this.trainingService.updateTraining(formData).subscribe(
+      updatedTraining => {
+        const index = this.trainings.findIndex(t => t.id === updatedTraining.id);
+        if (index !== -1) {
+          this.trainings[index] = updatedTraining;
+        }
+        this.trainingForm.reset();
+      },
+      error => {
+        console.error("Erreur lors de la mise à jour de la formation :", error);
+      }
+    );
   }
+  
+  getCategoryName(categoryId: number): string {
+    const category = this.categories.find(cat => cat.id === categoryId);
+    return category ? category.name : ''; // Retourne le nom de la catégorie ou une chaîne vide si la catégorie n'est pas trouvée
+  }
+  
 
   getTrainings(): void {
     this.trainingService.getAllTrainings().subscribe(trainings => this.trainings = trainings);
@@ -88,6 +97,4 @@ export class TrainingComponent implements OnInit {
   getCategories(): void {
     this.categoryService.getAllCategories().subscribe(categories => this.categories = categories);
   }
-
-  
-}  
+}

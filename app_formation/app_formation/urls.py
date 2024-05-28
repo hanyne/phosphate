@@ -11,9 +11,10 @@ from app_name.views import (
     EmployeeListCreateAPIView,
     FormateurListCreateAPIView,
     FormateurRetrieveUpdateDestroyAPIView,
-    redirect_to_admin  # Ajout de cette importation
+    redirect_to_admin,
+    EnrollmentCreateAPIView,
 )
-from app_name.views import EnrollmentCreateAPIView
+from app_name.views import EnrollmentDetailAPIView
 from rest_framework_simplejwt.views import TokenRefreshView
 
 urlpatterns = [
@@ -25,10 +26,9 @@ urlpatterns = [
     path('api/login/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/employee/', EmployeeListCreateAPIView.as_view(), name='employee-list-create'),
-    path('api/employee/<int:pk>/', EmployeeRetrieveUpdateDestroyAPIView.as_view(), name='employee-detail'),    
+    path('api/employee/<int:pk>/', EmployeeRetrieveUpdateDestroyAPIView.as_view(), name='employee-detail'),
     path('api/formateurs/', FormateurListCreateAPIView.as_view(), name='formateur-list-create'),
     path('api/formateurs/<int:pk>/', FormateurRetrieveUpdateDestroyAPIView.as_view(), name='formateur-detail'),
     path('api/enrollments/', EnrollmentCreateAPIView.as_view(), name='enrollment-create'),
     path('admin/', admin.site.urls),
-    path('admin/', redirect_to_admin),  # Redirection vers la page d'administration Django
 ]
