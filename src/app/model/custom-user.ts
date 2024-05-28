@@ -4,7 +4,3 @@ export interface CustomUser {
     username: string;
     // Ajoutez d'autres champs utilisateur si nécessaire
   }
-  export interface AuthResponse {
-    access: string;
-    refresh: string;
-  }

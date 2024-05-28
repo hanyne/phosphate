@@ -30,5 +30,6 @@ urlpatterns = [
     path('api/formateurs/', FormateurListCreateAPIView.as_view(), name='formateur-list-create'),
     path('api/formateurs/<int:pk>/', FormateurRetrieveUpdateDestroyAPIView.as_view(), name='formateur-detail'),
     path('api/enrollments/', EnrollmentCreateAPIView.as_view(), name='enrollment-create'),
+
     path('admin/', admin.site.urls),
 ]

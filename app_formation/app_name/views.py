@@ -34,7 +34,15 @@ class EnrollmentCreateAPIView(CreateAPIView):
 class EnrollmentDetailAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Enrollment.objects.all()
     serializer_class = EnrollmentSerializer
+class GetUserRole(APIView):
+    permission_classes = [IsAuthenticated]
 
+    def get(self, request):
+        user = request.user
+        if hasattr(user, 'formateur'):
+            return Response({'role': 'formateur'})
+        # Ajoutez d'autres vérifications de rôle si nécessaire
+        return Response({'role': 'user'})
 class SignUpView(APIView):
     def post(self, request):
         serializer = CustomUserSerializer(data=request.data)

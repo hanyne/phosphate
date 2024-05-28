@@ -1,5 +1,3 @@
-// auth.service.ts
-
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -43,6 +41,11 @@ export class AuthService {
   getAuthToken(): string | null {
     // Récupérer le jeton d'authentification du LocalStorage
     return localStorage.getItem(this.authTokenKey);
+  }
+
+  // Méthode pour récupérer le rôle de l'utilisateur depuis le backend
+  getRole(): Observable<string> {
+    return this.http.get<string>(`${this.apiUrl}get-role/`);
   }
   signUp(user: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}signup/`, user);
