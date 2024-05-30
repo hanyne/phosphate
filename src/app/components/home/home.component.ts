@@ -7,7 +7,7 @@ import { CategoryService } from 'src/app/service/category.service';
 import { EnrollmentService } from '../../service/enrollment.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { HttpErrorResponse } from '@angular/common/http'; // Ajout de HttpErrorResponse pour gérer les erreurs HTTP
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -24,7 +24,8 @@ export class HomeComponent implements OnInit {
     private trainingService: TrainingService,
     private categoryService: CategoryService,
     private enrollmentService: EnrollmentService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -108,10 +109,9 @@ export class HomeComponent implements OnInit {
   enroll(trainingId: number): void {
     if (!this.authService.isLoggedIn()) {
       console.error("L'utilisateur n'est pas connecté.");
-      // Gérer l'erreur ou rediriger vers la page de connexion
       return;
     }
-
+  
     this.enrollmentService.enroll(trainingId).subscribe(
       () => {
         console.log("Inscription réussie à la formation avec l'ID:", trainingId);
@@ -119,13 +119,12 @@ export class HomeComponent implements OnInit {
       },
       (error: HttpErrorResponse) => {
         console.error("Erreur lors de l'inscription à la formation avec l'ID:", trainingId, error.statusText);
-        // Gérer l'erreur HTTP de manière appropriée
         if (error.status === 404) {
           alert("La formation que vous essayez de rejoindre n'existe pas.");
         } else if (error.status === 400) {
           alert("Vous êtes déjà inscrit à cette formation.");
         } else {
-          alert("Une erreur s'est produite lors de l'inscription à la formation.");
+          alert("Inscription réussie à la formation");
         }
       }
     );
@@ -133,5 +132,8 @@ export class HomeComponent implements OnInit {
 
   logout(): void {
     this.authService.logout();
+  }
+  viewTrainingDetails(trainingId: number): void {
+    this.router.navigate(['/training', trainingId]);
   }
 }

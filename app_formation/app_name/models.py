@@ -1,6 +1,34 @@
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from django.contrib.auth.models import User
+
+class CustomUserManager(BaseUserManager):
+    def create_user(self, email, username, password=None):
+        if not email:
+            raise ValueError("Users must have an email address")
+        if not username:
+            raise ValueError("Users must have a username")
+
+        email = self.normalize_email(email)
+        user = self.model(email=email, username=username)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, username, password):
+        user = self.create_user(email=email, username=username, password=password)
+        user.is_superuser = True
+        user.is_staff = True
+        user.save(using=self._db)
+        return user
+
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.db import models
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, username, password=None):
@@ -28,6 +56,13 @@ class CustomUser(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
+    # Ajout du champ 'role'
+    ROLE_CHOICES = (
+        ('user', 'User'),
+        ('formateur', 'Formateur'),
+    )
+    role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='user')
+
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
@@ -41,7 +76,6 @@ class CustomUser(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return self.is_staff
-
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
@@ -79,8 +113,18 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from .models import Training
 
+class GetRoleView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        # Logique pour récupérer le rôle de l'utilisateur
+        user = request.user
+        role = user.profile.role  # Supposant que le rôle de l'utilisateur est stocké dans un champ 'role' du profil utilisateur
+        return Response({'role': role})
+    
 class Enrollment(models.Model):
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     training = models.ForeignKey(Training, on_delete=models.CASCADE)
     is_accepted = models.BooleanField(default=False)
 

@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-image: url('https://img.freepik.com/photos-gratuite/jardinage_23-2148020433.jpg?t=st=1717097799~exp=1717101399~hmac=b1f14b2efd87a6b6cc212bfa19e8e6854a34730d9b1086e6615d10edf24308ec&w=996');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .training-details-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .card {
+    position: relative;
+  }
+  
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: brightness(0.5); /* Assombrit l'image de fond pour améliorer la lisibilité du texte */
+  }
+  
+  .content {
+    position: relative;
+    z-index: 1;
+    padding: 50px;
+    color: #000; /* Couleur du texte modifiée en noir */
+    text-align: center;
+  }
+  
+  .content h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .content p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  

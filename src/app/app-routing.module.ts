@@ -16,6 +16,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { AdminloginComponent } from './components/adminlogin/adminlogin.component';
 import { AboutComponent } from './components/about/about.component';
+import { TrainingDetailComponent } from './training-detail/training-detail.component';
 
 
 
@@ -37,7 +38,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'admin', component: AdminloginComponent },
   { path: 'about', component: AboutComponent },
-
+  { path: 'training/:id', component: TrainingDetailComponent }
 
   
 ];

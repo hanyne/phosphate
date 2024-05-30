@@ -1,8 +1,9 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from app_name.views import (
     CustomTokenObtainPairView,
     EmployeeRetrieveUpdateDestroyAPIView,
+    GetUserRole,
     TrainingListCreateAPIView,
     TrainingRetrieveUpdateDestroyAPIView,
     CategoryListCreateAPIView,
@@ -29,7 +30,11 @@ urlpatterns = [
     path('api/employee/<int:pk>/', EmployeeRetrieveUpdateDestroyAPIView.as_view(), name='employee-detail'),
     path('api/formateurs/', FormateurListCreateAPIView.as_view(), name='formateur-list-create'),
     path('api/formateurs/<int:pk>/', FormateurRetrieveUpdateDestroyAPIView.as_view(), name='formateur-detail'),
-    path('api/enrollments/', EnrollmentCreateAPIView.as_view(), name='enrollment-create'),
-
+   path('api/enrollments/', EnrollmentCreateAPIView.as_view(), name='enrollment-create'),
+    path('api/enrollments/<int:pk>/', EnrollmentDetailAPIView.as_view(), name='enrollment-detail'),
+    path('api/get-role/', GetUserRole.as_view(), name='get-role'),
     path('admin/', admin.site.urls),
+
+    
+    
 ]

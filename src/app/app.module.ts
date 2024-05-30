@@ -22,6 +22,9 @@ import { HomeComponent } from './components/home/home.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { AdminloginComponent } from './components/adminlogin/adminlogin.component';
 import { AboutComponent } from './components/about/about.component';
+import { WebcamCaptureComponent } from './webcam-capture/webcam-capture.component';
+import { WebcamModule } from 'ngx-webcam';
+import { TrainingDetailComponent } from './training-detail/training-detail.component'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,14 +44,17 @@ import { AboutComponent } from './components/about/about.component';
     HomeComponent,
     SigninComponent,
     AdminloginComponent,
-    AboutComponent
+    AboutComponent,
+    WebcamCaptureComponent,
+    TrainingDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    WebcamModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

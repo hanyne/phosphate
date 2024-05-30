@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { User } from '../model/user';
+import { map, tap } from 'rxjs/operators';
 
-// Définir une interface pour la réponse d'authentification
 interface AuthResponse {
   token: string;
 }
@@ -14,7 +12,7 @@ interface AuthResponse {
 })
 export class AuthService {
   private apiUrl = 'http://localhost:8000/api/';
-  private authTokenKey = 'authToken'; // Clé pour le stockage du jeton d'authentification dans le LocalStorage
+  private authTokenKey = 'authToken';
 
   constructor(private http: HttpClient) { }
 
@@ -22,31 +20,35 @@ export class AuthService {
     return this.http.post<AuthResponse>(`${this.apiUrl}login/`, credentials)
       .pipe(
         tap(response => {
-          // Stocker le jeton d'authentification dans le LocalStorage après une connexion réussie
           localStorage.setItem(this.authTokenKey, response.token);
         })
       );
   }
-
+  
   logout(): void {
-    // Supprimer le jeton d'authentification du LocalStorage lors de la déconnexion
     localStorage.removeItem(this.authTokenKey);
   }
 
   isLoggedIn(): boolean {
-    // Vérifier si l'utilisateur est connecté en fonction de la présence du jeton d'authentification dans le LocalStorage
     return !!localStorage.getItem(this.authTokenKey);
   }
 
   getAuthToken(): string | null {
-    // Récupérer le jeton d'authentification du LocalStorage
     return localStorage.getItem(this.authTokenKey);
   }
 
-  // Méthode pour récupérer le rôle de l'utilisateur depuis le backend
   getRole(): Observable<string> {
-    return this.http.get<string>(`${this.apiUrl}get-role/`);
+    const token = this.getAuthToken();
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get<any>(`${this.apiUrl}get-role/`, { headers })
+      .pipe(
+        map(response => response.role) // Assuming the role is returned in the 'role' field of the response
+      );
   }
+  
+
   signUp(user: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}signup/`, user);
   }
