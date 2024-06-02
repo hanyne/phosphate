@@ -58,3 +58,25 @@ class FormateurSerializer(serializers.ModelSerializer):
     class Meta:
         model = Formateur
         fields = '__all__'
+from rest_framework import serializers
+from .models import CustomUser, Formateur
+from django.contrib.auth import authenticate
+
+class FormateurLoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField(write_only=True)
+
+    def validate(self, data):
+        email = data.get("email")
+        password = data.get("password")
+        user = authenticate(email=email, password=password)
+        
+        if user is None:
+            raise serializers.ValidationError("Invalid credentials")
+        if not user.is_active:
+            raise serializers.ValidationError("User is not active")
+        if user.role != 'formateur':
+            raise serializers.ValidationError("User is not a formateur")
+        
+        data["user"] = user
+        return data

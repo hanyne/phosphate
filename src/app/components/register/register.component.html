@@ -1,38 +1,51 @@
-<div class="container">
-	<div class="row justify-content-center">
-	  <div class="col-md-6">
-		<h2>Inscription</h2>
-		<form [formGroup]="signUpForm" (ngSubmit)="signUp()">
-		  <div class="form-group">
-			<label for="username">Nom d'utilisateur</label>
-			<input type="text" formControlName="username" class="form-control" id="username" placeholder="Nom d'utilisateur">
-			<div *ngIf="signUpForm.get('username')?.errors && (signUpForm.get('username')?.dirty || signUpForm.get('username')?.touched)"
-			  class="text-danger">
-			  <div *ngIf="signUpForm.get('username')?.hasError('required')">Nom d'utilisateur requis</div>
-			</div>
-		  </div>
-		  <div class="form-group">
-			<label for="email">Email</label>
-			<input type="email" formControlName="email" class="form-control" id="email" placeholder="Email">
-			<div *ngIf="signUpForm.get('email')?.errors && (signUpForm.get('email')?.dirty || signUpForm.get('email')?.touched)"
-			  class="text-danger">
-			  <div *ngIf="signUpForm.get('email')?.hasError('required')">Email requis</div>
-			  <div *ngIf="signUpForm.get('email')?.hasError('email')">Email invalide</div>
-			</div>
-		  </div>
-		  <div class="form-group">
-			<label for="password">Mot de passe</label>
-			<input type="password" formControlName="password" class="form-control" id="password" placeholder="Mot de passe">
-			<div *ngIf="signUpForm.get('password')?.errors && (signUpForm.get('password')?.dirty || signUpForm.get('password')?.touched)"
-			  class="text-danger">
-			  <div *ngIf="signUpForm.get('password')?.hasError('required')">Mot de passe requis</div>
-			  <div *ngIf="signUpForm.get('password')?.hasError('minlength')">Le mot de passe doit contenir au moins 6 caractères</div>
-			</div>
-		  </div>
-		  <button type="submit" [disabled]="!signUpForm.valid" class="btn btn-primary">S'inscrire</button>
-		</form>
-		<div *ngIf="errorMessage" class="text-danger mt-3">{{ errorMessage }}</div>
-	  </div>
-	</div>
-  </div>
-  
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>RegistrationForm_v2 by Colorlib</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MATERIAL DESIGN ICONIC FONT -->
+    <!-- STYLE CSS -->
+
+</head>
+<body>
+    <div class="wrapper" style="background-image: url('images/bg-registration-form-2.jpg');">
+        <div class="inner">
+            <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+                <h3>Inscription</h3>
+                <div class="form-group">
+                    <div class="form-wrapper">
+                        <label for="username">Nom d'utilisateur</label>
+                        <input type="text" formControlName="username" class="form-control" id="username" placeholder="Nom d'utilisateur">
+                        <div *ngIf="signUpForm.get('username')?.errors && (signUpForm.get('username')?.dirty || signUpForm.get('username')?.touched)"
+                            class="text-danger">
+                            <div *ngIf="signUpForm.get('username')?.hasError('required')">Nom d'utilisateur requis</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-wrapper">
+                    <label for="email">Email</label>
+                    <input type="email" formControlName="email" class="form-control" id="email" placeholder="Email">
+                    <div *ngIf="signUpForm.get('email')?.errors && (signUpForm.get('email')?.dirty || signUpForm.get('email')?.touched)"
+                        class="text-danger">
+                        <div *ngIf="signUpForm.get('email')?.hasError('required')">Email requis</div>
+                        <div *ngIf="signUpForm.get('email')?.hasError('email')">Email invalide</div>
+                    </div>
+                </div>
+                <div class="form-wrapper">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" formControlName="password" class="form-control" id="password" placeholder="Mot de passe">
+                    <div *ngIf="signUpForm.get('password')?.errors && (signUpForm.get('password')?.dirty || signUpForm.get('password')?.touched)"
+                        class="text-danger">
+                        <div *ngIf="signUpForm.get('password')?.hasError('required')">Mot de passe requis</div>
+                        <div *ngIf="signUpForm.get('password')?.hasError('minlength')">Le mot de passe doit contenir au moins 6 caractères</div>
+                    </div>
+                </div>
+                <button type="submit" [disabled]="!signUpForm.valid" class="btn btn-primary">S'inscrire</button>
+            </form>
+            <div *ngIf="errorMessage" class="text-danger mt-3">{{ errorMessage }}</div>
+        </div>
+    </div>
+</body>
+<!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

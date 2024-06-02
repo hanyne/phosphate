@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+</head>
+<body>
+<div class="container">
+  <h2>Choisir le type de connexion</h2>
+  <div class="card" id="employee" (click)="navigateTo('login')">
+    <h3>Employé</h3>
+    <p>Connectez-vous en tant qu'employé</p>
+  </div>
+  <div class="card" id="employer"(click)="navigateTo('signin')">
+    <h3>Formateur</h3>
+    <p>Connectez-vous en tant qu'employeur</p>
+  </div>
+</div>
+</body>
+</html>

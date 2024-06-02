@@ -110,5 +110,37 @@ table {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-  
+  }body {
+    background: linear-gradient(90deg, rgba(9, 79, 121, 1) 1%, rgba(0, 212, 255, 1) 100%);
+}
+
+.navbar {
+    background: linear-gradient(90deg, rgba(9, 79, 121, 1) 1%, rgba(0, 212, 255, 1) 100%);
+}
+
+
+.breadcrumb-item a {
+    color: white !important;
+}
+
+.card-header.bg-primary {
+    background-color: #007bff !important;
+    color: white !important;
+}
+.description {
+  max-width: 250px; /* Limite la largeur de la colonne de la description */
+  word-wrap: break-word; /* Permet le retour à la ligne lorsque le texte dépasse la largeur */
+}
+
+.table th,
+.table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+
+.table th {
+    background-color: #f2f2f2;
+    color: #333;
+}

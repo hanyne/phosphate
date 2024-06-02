@@ -1,47 +1,69 @@
-body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background-image: url('https://img.freepik.com/photos-gratuite/jardinage_23-2148020433.jpg?t=st=1717097799~exp=1717101399~hmac=b1f14b2efd87a6b6cc212bfa19e8e6854a34730d9b1086e6615d10edf24308ec&w=996');
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .training-details-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .card {
-    position: relative;
-  }
-  
-  .background-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    filter: brightness(0.5); /* Assombrit l'image de fond pour améliorer la lisibilité du texte */
-  }
-  
-  .content {
-    position: relative;
-    z-index: 1;
-    padding: 50px;
-    color: #000; /* Couleur du texte modifiée en noir */
-    text-align: center;
-  }
-  
-  .content h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .content p {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-  }
-  
+/* Styles précédents inchangés */
+
+.title {
+  color: #ff7f50; /* Couleur orangée pour les titres */
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.text-container {
+  flex: 1;
+}
+
+.card {
+  position: relative;
+  max-width: 800px; /* Ajustez la largeur maximale selon vos préférences */
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+}
+
+/* Autres styles inchangés */
+.training-details-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  width: 80%; /* Largeur de la carte réduite */
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: #f8f9fa; /* Couleur de fond de la carte */
+}
+
+.image-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.image-container img {
+  width: 150px; /* Taille de l'image réduite */
+  height: 150px; /* Taille de l'image réduite */
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.text-container {
+  padding: 20px;
+  text-align: left;
+}
+
+.title {
+  color: #2e08ee;
+  font-size: 1.5rem; /* Taille du titre augmentée */
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 1.2rem; /* Taille de la description légèrement augmentée */
+  color: #555; /* Couleur de la description */
+}

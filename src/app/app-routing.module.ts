@@ -6,7 +6,6 @@ import { AddCategorieComponent } from './components/categorie/add-categorie/add-
 import { ListeUtilisateurComponent } from './components/utilisateur/liste-utilisateur/liste-utilisateur.component';
 import { EditUtilisateurComponent } from './components/utilisateur/edit-utilisateur/edit-utilisateur.component';
 import { AddUtilisateurComponent } from './components/utilisateur/add-utilisateur/add-utilisateur.component';
-import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { TrainingComponent } from './components/training/training.component';
 import { CategoryComponent } from './components/category/category.component';
@@ -17,6 +16,8 @@ import { SigninComponent } from './components/signin/signin.component';
 import { AdminloginComponent } from './components/adminlogin/adminlogin.component';
 import { AboutComponent } from './components/about/about.component';
 import { TrainingDetailComponent } from './training-detail/training-detail.component';
+import { RoleComponent } from './components/role/role.component'; 
+import { SigninfComponent } from './components/signinf/signinf.component'; 
 
 
 
@@ -38,7 +39,11 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'admin', component: AdminloginComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'training/:id', component: TrainingDetailComponent }
+  { path: 'training/:id', component: TrainingDetailComponent },
+  { path: 'role', component: RoleComponent },
+  { path: 'signin', component: SigninfComponent },
+
+
 
   
 ];

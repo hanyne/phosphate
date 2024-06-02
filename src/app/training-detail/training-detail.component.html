@@ -1,19 +1,23 @@
 <div class="training-details-container">
-    <div class="card">
-      <!-- Image de fond avec superposition -->
-      <div class="background-image"></div>
-      <!-- Contenu de la carte -->
-      <div class="content">
-        <h1>Détails de la formation</h1>
-        <div class="details">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShLuBkolCPcWj4M-JXIsI7q88wUjVElfyt6RNY2enU4Q&s" class="card-img-top img-fluid rounded-circle w-25 mx-auto mt-4" alt="...">
-          <p style="color: black;"><strong>Nom:</strong> {{ training?.title }}</p>
-          <p style="color: black;"><strong>Description:</strong> {{ training?.description }}</p>
-          <p style="color: black;"><strong>Date de début:</strong> {{ training?.date_start }}</p>
-          <p style="color: black;"><strong>Date de fin:</strong> {{ training?.date_end }}</p>
-          <!-- Ajoutez d'autres détails de la formation ici -->
+  <div class="card">
+    <div class="background-image"></div>
+    <div class="content">
+      <h1 class="text-center">Détails de la formation</h1>
+      <div class="details">
+        <div class="image-container">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShLuBkolCPcWj4M-JXIsI7q88wUjVElfyt6RNY2enU4Q&s" class="card-img-top img-fluid rounded-circle" alt="...">
+        </div>
+        <div class="text-container">
+          <h2 class="title">Nom:</h2>
+          <p class="description">{{ training?.title }}</p>
+          <h2 class="title">Description:</h2>
+          <p class="description">{{ training?.description }}</p>
+          <h2 class="title">Date de début:</h2>
+          <p class="description">{{ training?.date_start }}</p>
+          <h2 class="title">Date de fin:</h2>
+          <p class="description">{{ training?.date_end }}</p>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

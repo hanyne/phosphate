@@ -3,6 +3,7 @@ from django.urls import include, path
 from app_name.views import (
     CustomTokenObtainPairView,
     EmployeeRetrieveUpdateDestroyAPIView,
+    FormateurLoginView,
     GetUserRole,
     TrainingListCreateAPIView,
     TrainingRetrieveUpdateDestroyAPIView,
@@ -34,6 +35,7 @@ urlpatterns = [
     path('api/enrollments/<int:pk>/', EnrollmentDetailAPIView.as_view(), name='enrollment-detail'),
     path('api/get-role/', GetUserRole.as_view(), name='get-role'),
     path('admin/', admin.site.urls),
+    path('api/formateur/login/', FormateurLoginView.as_view(), name='formateur-login'),
 
     
     

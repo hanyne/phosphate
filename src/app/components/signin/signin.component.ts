@@ -17,24 +17,8 @@ export class SigninComponent {
     this.authService.login(this.credentials).subscribe(
       (response) => {
         console.log(response);
-
-        // Vérifier le rôle de l'utilisateur après la connexion réussie
-        this.authService.getRole().subscribe(
-          (role) => {
-            if (role === 'formateur') {
-              // Rediriger vers la page dashboard si l'utilisateur est un formateur
-              this.router.navigate(['/dashboard']);
-            } else {
-              // Rediriger vers la page home pour d'autres types d'utilisateurs
-              this.router.navigate(['/home']);
-            }
-          },
-          (error) => {
-            console.error('Error while fetching user role:', error);
-            // Rediriger vers la page home en cas d'erreur
-            this.router.navigate(['/home']);
-          }
-        );
+        // Rediriger vers la page home pour les utilisateurs
+        this.router.navigate(['/home']);
       },
       (error) => {
         this.error = error.error.message || 'Login failed. Please try again.';
